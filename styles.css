@@ -1,0 +1,45 @@
+.tabs {
+    
+    background: linear-gradient(70deg, yellow, pink);
+}
+
+[role="tablist"] {
+    display: flex;
+
+    position: fixed;
+
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    gap: 2vw;
+    background: linear-gradient(red, orange);
+}
+
+
+[role="tabpanel"] {
+
+    top: 10vh;
+    padding: 2rem;
+}
+
+button {
+    flex: 1;
+    border: 1;
+    background: none;
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(45deg, green, lightblue);
+}
+
+.logo {
+    max-height: 5vh;
+}
+
+footer {
+    display: block;
+    position: relative;
+    align-content: center;
+}
