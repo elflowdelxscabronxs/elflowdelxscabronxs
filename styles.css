@@ -3,18 +3,21 @@
 }
 
 body {
-  background: linear-gradient(45deg, green, lightblue);
+  background: linear-gradient(45deg, ivory, gray);
+  font-family: "Pangolin";
+  margin: 0px;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: linear-gradient(45deg, red, yellow);
+  background: linear-gradient(45deg, gray, ivory);
 }
 
 .footer {
-  background: linear-gradient(45deg, orange, purple);
+  display: flex;
+  justify-content: center;
 }
 
 .map {
