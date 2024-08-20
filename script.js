@@ -87,8 +87,7 @@ const handleRetroceder = () => {
 const handleButtonClick = (e) => {
     const retroceder = document.createElement('button');
     retroceder.innerText = 'Atras';
-    retroceder.addEventListener("click", handleMapClick)
-    console.log(e.target.innerText)
+    retroceder.addEventListener("click", handleMapClick);
     const videoRep = document.createElement("iframe");
     videoRep.src = `https://www.youtube.com/embed/` + videos.find((video)=>e.target.innerText === video.video).id
     interior.innerHTML = '';
