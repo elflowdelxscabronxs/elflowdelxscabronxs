@@ -57,39 +57,42 @@ const videos = [
     },
 ];
 
-const map = document.querySelector('.map');
-const reproductor = document.querySelector('.rep-outer');
-const interior = document.querySelector('.rep-inner');
+const map = document.querySelector('.map'); // tomo mapa del DOM
+const reproductor = document.querySelector('.rep-outer'); // tomo exterior del modal
+const interior = document.querySelector('.rep-inner'); // tomo interior del modal
 
-const handleMapClick = () => {
-    interior.innerHTML = '';
-    reproductor.classList.add('open');
-    const videoList = document.createElement('ul');
-    interior.appendChild(videoList);
-    videos.forEach((video) => {
-        const listItem = document.createElement('li');
-        const videoBtn = document.createElement('button');
-        videoBtn.innerText = video.video;
-        listItem.appendChild(videoBtn);
-        videoList.appendChild(listItem);
-        videoBtn.addEventListener('click', handleButtonClick);
+const handleMapClick = () => { // funcion para clickear el mapa
+
+    interior.innerHTML = ''; // limpio el modal
+    const videoList = document.createElement('ul'); // creo lista
+    interior.appendChild(videoList); // incorporo la lista
+    videos.forEach((video) => { // por cada video
+        const listItem = document.createElement('li'); // creo un elemento lista
+        const videoBtn = document.createElement('button');  // y un boton
+        videoBtn.innerText = video.video; // el texto del boton muestra el nombre del video
+        listItem.appendChild(videoBtn); // incorporo el boton al li
+        videoList.appendChild(listItem); // incorporo li a ul
+        videoBtn.addEventListener('click', handleButtonClick); // le doy funcion al boton
     });
+    reproductor.classList.add('open'); // hago visible el modal
 };
 
-const closeRep = () => {
-    reproductor.classList.remove('open');
+const closeRep = () => { // funcion para cerrar modal
+    reproductor.classList.remove('open'); // cierro modal
 };
 
 const handleRetroceder = () => {
 
 };
 
-const handleButtonClick = (e) => {
+const handleButtonClick = (e) => { // función para botón dentro del modal
     const retroceder = document.createElement('button');
     retroceder.innerText = 'Atras';
     retroceder.addEventListener("click", handleMapClick);
     const videoRep = document.createElement("iframe");
     videoRep.src = `https://www.youtube.com/embed/` + videos.find((video)=>e.target.innerText === video.video).id
+    videoRep.setAttribute("frameborder", 0)
+    videoRep.setAttribute("allowfullscreen", true)
     interior.innerHTML = '';
     interior.appendChild(retroceder);
     interior.appendChild(videoRep);
@@ -102,3 +105,10 @@ reproductor.addEventListener('click', (event) => {
         closeRep();
     }
 });
+
+const paisElegido = "Argentina"
+console.log(videos.filter((video)=>video.country.includes(paisElegido)))
+
+videos.forEach(video=>{
+    console.log(video.country)
+})

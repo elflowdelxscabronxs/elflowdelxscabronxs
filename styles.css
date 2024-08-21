@@ -11,13 +11,16 @@ hr {
     margin: 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .header {
     position: absolute;
-    left: 1%;
-    display: flex;
-    flex-direction: column;
-
-
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .flotante {
@@ -33,7 +36,9 @@ hr {
 
 .footer {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+
 }
 
 .map {
@@ -42,7 +47,7 @@ hr {
 
 .rep-outer {
     display: grid;
-    background: hsla(0, 0%, 5%, 0.7);
+    background: hsla(0, 0%, 0%, 0.7);
     position: fixed;
     height: 100vh;
     width: 100vw;
