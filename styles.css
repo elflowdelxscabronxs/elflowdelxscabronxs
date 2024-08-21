@@ -7,12 +7,14 @@ body {
     margin: 0px;
 }
 
-hr {
-    margin: 0;
-}
-
 ul {
     list-style-type: none;
+}
+
+button {
+    font-family: inherit;
+    font-size: 1.5rem;
+    margin: 5px;    
 }
 
 .header {
@@ -21,17 +23,19 @@ ul {
     right: 0;
     margin: 0 auto;
     text-align: center;
+    font-size: 2rem;
 }
 
 .flotante {
-    width: 40%;
+    width: 90%;
     position: absolute;
-    left: 30%;
-    top: 13%;
+    left: 5%;
+    top: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 1.5rem;
 }
 
 .footer {
@@ -42,7 +46,7 @@ ul {
 }
 
 .map {
-    max-width: 100%;
+    width: 100%;
 }
 
 .rep-outer {
@@ -62,19 +66,14 @@ ul {
 .rep-outer.open {
     opacity: 1;
     pointer-events: all;
-    transition: opacity 0.2s;
+    transition: opacity 0.5s;
 }
 
 .rep-inner {
-    max-width: 600px;
-    min-width: 400px;
-    padding: 2rem;
-    border-radius: 5px;
-    min-height: 200px;
-    background: white;
+    min-width: 90%;
 }
 
-.contenedor-teaser {
+.contenedor {
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -92,7 +91,16 @@ ul {
 }
 
 .presentación {
-    background-color: white;
     padding: 1%;
+}
 
+.embebido {
+    height: 56.25vh;
+    width: 100vw;
+    padding-bottom: 2%;
+}
+
+.retroceder {
+    display: block;
+    margin: auto auto;
 }

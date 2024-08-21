@@ -86,25 +86,29 @@ const handleRetroceder = () => {
 };
 
 const handleButtonClick = (e) => { // función para botón dentro del modal
-    const retroceder = document.createElement('button');
-    retroceder.innerText = 'Atras';
-    retroceder.addEventListener("click", handleMapClick);
-    const videoRep = document.createElement("iframe");
-    videoRep.src = `https://www.youtube.com/embed/` + videos.find((video)=>e.target.innerText === video.video).id
-    videoRep.setAttribute("frameborder", 0)
-    videoRep.setAttribute("allowfullscreen", true)
-    interior.innerHTML = '';
-    interior.appendChild(retroceder);
-    interior.appendChild(videoRep);
+    const retroceder = document.createElement('button'); // creo boton retroceso
+    retroceder.innerText = 'Atras'; // contenido
+    retroceder.classList.add("retroceder"); // le doy clase
+    retroceder.addEventListener("click", handleMapClick); // le doy EventList de click
+    const videoRep = document.createElement("iframe"); // creo iframe
+    videoRep.src = `https://www.youtube.com/embed/` + videos.find((video)=>e.target.innerText === video.video).id; // le doy source correspondiente
+    videoRep.setAttribute("frameborder", 0); // sin borde
+    videoRep.setAttribute("allowfullscreen", true); // se puede maximizar
+    videoRep.classList.add("embebido"); // le doy clase
+    interior.innerHTML = ``; // limpio modal
+    interior.appendChild(videoRep); // agrego iframe
+    interior.appendChild(retroceder); // agrego boton retroceso
 };
 
-map.addEventListener('click', handleMapClick);
+map.addEventListener('click', handleMapClick); // a modificar para integrar las areas
 
-reproductor.addEventListener('click', (event) => {
+reproductor.addEventListener('click', (event) => { // cierra el modal cuando se cliquea por fuera
     if ([...event.target.classList].includes('rep-outer')) {
         closeRep();
     }
 });
+
+// zona de pruebas vvv
 
 const paisElegido = "Argentina"
 console.log(videos.filter((video)=>video.country.includes(paisElegido)))
