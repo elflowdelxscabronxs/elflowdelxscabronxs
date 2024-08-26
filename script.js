@@ -61,7 +61,8 @@ const map = document.querySelector('.map'); // tomo mapa del DOM
 const reproductor = document.querySelector('.rep-outer'); // tomo exterior del modal
 const interior = document.querySelector('.rep-inner'); // tomo interior del modal
 
-const handleMapClick = () => { // funcion para clickear el mapa
+ // funcion para clickear el mapa
+const handleMapClick = () => {
 
     interior.innerHTML = ''; // limpio el modal
     const videoList = document.createElement('ul'); // creo lista
@@ -77,27 +78,33 @@ const handleMapClick = () => { // funcion para clickear el mapa
     reproductor.classList.add('open'); // hago visible el modal
 };
 
-const closeRep = () => { // funcion para cerrar modal
+// funcion para cerrar modal
+const closeRep = () => {
     reproductor.classList.remove('open'); // cierro modal
 };
 
+// función para apretar el botón de retroceso
 const handleRetroceder = () => {
-
+    interior.firstChild.style.display = "block";
+    interior.removeChild(interior.lastChild);
+    interior.removeChild(interior.lastChild);
 };
 
-const handleButtonClick = (e) => { // función para botón dentro del modal
-    const retroceder = document.createElement('button'); // creo boton retroceso
-    retroceder.innerText = 'Atras'; // contenido
-    retroceder.classList.add("retroceder"); // le doy clase
-    retroceder.addEventListener("click", handleMapClick); // le doy EventList de click
+
+ // función para botón de video dentro del modal
+const handleButtonClick = (e) => {
+    const btnVolver = document.createElement('button'); // creo boton retroceso
+    btnVolver.innerText = 'Volver'; // contenido
+    btnVolver.classList.add("retroceder"); // le doy clase
+    btnVolver.addEventListener("click", handleRetroceder); // escucho click y mando a handle
     const videoRep = document.createElement("iframe"); // creo iframe
     videoRep.src = `https://www.youtube.com/embed/` + videos.find((video)=>e.target.innerText === video.video).id; // le doy source correspondiente
     videoRep.setAttribute("frameborder", 0); // sin borde
     videoRep.setAttribute("allowfullscreen", true); // se puede maximizar
     videoRep.classList.add("embebido"); // le doy clase
-    interior.innerHTML = ``; // limpio modal
+    interior.firstChild.style.display = "none"; // colapso la lista
     interior.appendChild(videoRep); // agrego iframe
-    interior.appendChild(retroceder); // agrego boton retroceso
+    interior.appendChild(btnVolver); // agrego boton retroceso
 };
 
 map.addEventListener('click', handleMapClick); // a modificar para integrar las areas
@@ -108,11 +115,29 @@ reproductor.addEventListener('click', (event) => { // cierra el modal cuando se 
     }
 });
 
-// zona de pruebas vvv
+// VVV zona de pruebas VVV
 
-const paisElegido = "Argentina"
-console.log(videos.filter((video)=>video.country.includes(paisElegido)))
+// función para manejar el clickeo en un área
+const handleAreaClick = (e) => {
+    interior.innerHTML = ''; // limpio el modal
+    const videoList = document.createElement('ul'); // creo ul
+    interior.appendChild(videoList); // incorporo ul  
+    const videosSeleccionados = videos.filter((video)=>video.country.includes(e)); // tomo los videos de la lista que corresponden al país seleccionado
+    videosSeleccionados.forEach((video) => { // por cada video
+        const listItem = document.createElement('li'); // creo un elemento lista
+        const videoBtn = document.createElement('button');  // y un boton
+        videoBtn.innerText = video.video; // el texto del boton muestra el nombre del video
+        listItem.appendChild(videoBtn); // incorporo el boton al li
+        videoList.appendChild(listItem); // incorporo li a ul
+        videoBtn.addEventListener('click', handleButtonClick); // le doy funcion al boton
+    });
+    reproductor.classList.add('open'); // hago visible el modal
+};
 
-videos.forEach(video=>{
-    console.log(video.country)
-})
+ImageMap('img[usemap]') // tomo este código prestado para reescalar el mapeo de la imagen
+
+// VVV para ver donde está el mouse desde la consola VVV
+// map.addEventListener('mousemove', function(event){
+//     setTimeout(console.log("x: " + event.offsetX + " y: " + event.offsetY), 1000)
+
+// });
