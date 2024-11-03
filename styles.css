@@ -17,6 +17,14 @@ button {
     margin: 5px;
 }
 
+h2 {
+    color: white;
+}
+
+h3 {
+    color: gold;
+}
+
 .header {
     position: absolute;
     left: 0;

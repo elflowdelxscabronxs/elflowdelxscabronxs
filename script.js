@@ -120,8 +120,16 @@ reproductor.addEventListener('click', (event) => { // cierra el modal cuando se 
 // función para manejar el clickeo en un área
 const handleAreaClick = (e) => {
     interior.innerHTML = ''; // limpio el modal
+    const divContent = document.createElement('div'); // creo div contenedora
     const videoList = document.createElement('ul'); // creo ul
-    interior.appendChild(videoList); // incorporo ul  
+    const contentTitle = document.createElement('h2'); // creo h2
+    const videoListTitle = document.createElement('h3'); // creo h3
+    contentTitle.innerText = e; // le doy texto a h2
+    videoListTitle.innerText = 'Videos'; // le doy texto a h3
+    divContent.appendChild(contentTitle); // incorporo h2 a div
+    divContent.appendChild(videoListTitle); // incorporo h3 a div
+    divContent.appendChild(videoList); // incorporo ul a div
+    interior.appendChild(divContent); // incorporo div a modal  
     const videosSeleccionados = videos.filter((video)=>video.country.includes(e)); // tomo los videos de la lista que corresponden al país seleccionado
     videosSeleccionados.forEach((video) => { // por cada video
         const listItem = document.createElement('li'); // creo un elemento lista
