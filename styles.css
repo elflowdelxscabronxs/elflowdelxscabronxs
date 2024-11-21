@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: "Pangolin";
+    font-family: "Fredericka the Great", serif;
     margin: 0px;
 }
 
@@ -17,12 +17,21 @@ button {
     margin: 5px;
 }
 
+h1 {
+    font-size: 4em;
+    color: white;
+    font-weight: lighter;
+    -webkit-text-stroke: 0.5px #7a9ca0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
 h2 {
     color: white;
 }
 
 h3 {
-    color: gold;
+    color: #7a9ca0;
 }
 
 .header {
@@ -35,10 +44,10 @@ h3 {
 }
 
 .flotante {
-    width: 90%;
+    width: 80%;
     position: absolute;
-    left: 5%;
-    top: 10%;
+    left: 10%;
+    top: 18%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,6 +111,9 @@ h3 {
 
 .presentación {
     padding: 1%;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    margin-bottom: 40px;
 }
 
 .embebido {
