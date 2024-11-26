@@ -4,7 +4,7 @@ const videos = [
         artist: 'Lucía Vargas',
         city: 'Cali',
         country: 'Colombia',
-        video: 'Por Aguantar',
+        video: 'Por Aguantar - Lucía Vargas',
         id: "B9Z50F1YMtQ",
     },
     {
@@ -12,7 +12,7 @@ const videos = [
         artist: 'Diana Avella',
         city: 'Bogotá',
         country: 'Colombia',
-        video: 'Micro-documental',
+        video: 'Entrevista Diana Avella',
         id: "T8g-LDSfRXY",
     },
     {
@@ -20,7 +20,7 @@ const videos = [
         artist: 'El Flow de las cabronas',
         city: ['Bogotá', 'Cali', 'Medellín'],
         country: 'Colombia',
-        video: 'El Flow de las cabronas (Fragmento Colombia)',
+        video: 'Corte Colombia',
         id: "T_j-718lmfo",
     },
     {
@@ -28,7 +28,7 @@ const videos = [
         artist: 'El Flow de las cabronas',
         city: 'Santiago',
         country: 'Chile',
-        video: 'El Flow de las cabronas (Fragmento Chile)',
+        video: 'Corte Chile',
         id: "yIXZNbvHunc",
     },
     {
@@ -36,15 +36,15 @@ const videos = [
         artist: 'Indómitamorfosis',
         city: 'Valparaiso',
         country: 'Chile',
-        video: 'Homenaje a Nicole Saavedra',
+        video: 'Homenaje a Nicole Saavedra - Indómitamorfosis',
         id: "oR4plT-NqBY",
     },
     {
         url: 'https://www.youtube.com/watch?v=QluevKchlR0',
         artist: 'Krudxs Cubensi',
         city: '',
-        country: ['Cuba', 'Estados Unidos', 'Argentina'],
-        video: 'Conversatorio',
+        country: 'Argentina',
+        video: 'Feminismo antirracista y apropiación cultural por Krudxs Cubensi',
         id: "QluevKchlR0",
     },
     {
@@ -52,36 +52,79 @@ const videos = [
         artist: 'Indómitamorfosis',
         city: 'Buenos Aires',
         country: 'Argentina',
-        video: 'en Buenos Aires',
+        video: 'Por la absolución de Higui - Indómitamorfosis',
         id: "1CvxfzBFw_I",
     },
 ];
-
-const map = document.querySelector('.map'); // tomo mapa del DOM
+const fotos = [
+    {
+        country: "México",
+        img: [
+            "La Mare 1.png",
+            "la mare advertencia lírika.png",
+            "La Mare.png"
+        ],
+    },
+    {
+        country: "Argentina",
+        img: [
+            "Indómita Morfosis.png",
+            "Indómita Morfosis2.png",
+            "Karen Pastrana.png",
+            "Kris Alaniz1.JPG",
+            "Kris Alaniz2.JPG",
+            "Kriz Alanis.png",
+            "Kriz Alanis1.png",
+            "tink 2.png",
+            "tink 3.png",
+            "Tink.png",
+            "tink3.png"
+        ],
+    },
+    {
+        country: "Chile",
+        img: [
+            "Deyas Klan .png",
+            "Gabi de Deyas Klan.png",
+            "Indómita Morfosis.png",
+            "Isa de Deyas Klan.JPG",
+            "Millaray 1.png",
+            "millaray.JPG",
+            "Millaray.png",
+        ],
+    },
+    {
+        country: "Colombia",
+        img: [
+            "11040578_403555226515885_8394124775578554301_o.jpg",
+            "Aura del Mar 2.jpg",
+            "Aura del Mar.jpg",
+            "De Loto1.jpg",
+            "De Loto2.jpg",
+            "De Loto3.jpg",
+            "De Loto4.jpg",
+            "De Loto5.jpg",
+            "Lucía Vargas.png",
+            "Lucía Vargas1.JPG",
+            "Lucía Vargas2.JPG",
+            "Lucía Vargas3.JPG",
+        ],
+    },
+];
+const map = document.querySelector('.map'); // tomo mapa
 const reproductor = document.querySelector('.rep-outer'); // tomo exterior del modal
 const interior = document.querySelector('.rep-inner'); // tomo interior del modal
-
- // funcion para clickear el mapa
-const handleMapClick = () => {
-
-    interior.innerHTML = ''; // limpio el modal
-    const videoList = document.createElement('ul'); // creo lista
-    interior.appendChild(videoList); // incorporo la lista
-    videos.forEach((video) => { // por cada video
-        const listItem = document.createElement('li'); // creo un elemento lista
-        const videoBtn = document.createElement('button');  // y un boton
-        videoBtn.innerText = video.video; // el texto del boton muestra el nombre del video
-        listItem.appendChild(videoBtn); // incorporo el boton al li
-        videoList.appendChild(listItem); // incorporo li a ul
-        videoBtn.addEventListener('click', handleButtonClick); // le doy funcion al boton
-    });
-    reproductor.classList.add('open'); // hago visible el modal
-};
 
 // funcion para cerrar modal
 const closeRep = () => {
     reproductor.classList.remove('open'); // cierro modal
 };
+
+reproductor.addEventListener('click', (event) => { // cierra el modal cuando se cliquea por fuera
+    if ([...event.target.classList].includes('rep-outer')) {
+        closeRep();
+    }
+});
 
 // función para apretar el botón de retroceso
 const handleRetroceder = () => {
@@ -90,8 +133,7 @@ const handleRetroceder = () => {
     interior.removeChild(interior.lastChild);
 };
 
-
- // función para botón de video dentro del modal
+// función para botón de video dentro del modal
 const handleButtonClick = (e) => {
     const btnVolver = document.createElement('button'); // creo boton retroceso
     btnVolver.innerText = 'Volver'; // contenido
@@ -107,30 +149,51 @@ const handleButtonClick = (e) => {
     interior.appendChild(btnVolver); // agrego boton retroceso
 };
 
-map.addEventListener('click', handleMapClick); // a modificar para integrar las areas
 
-reproductor.addEventListener('click', (event) => { // cierra el modal cuando se cliquea por fuera
-    if ([...event.target.classList].includes('rep-outer')) {
-        closeRep();
-    }
-});
-
-// VVV zona de pruebas VVV
+// función para botón de galería dentro del modal
+const handleGalleryBtnClick = (e) => {
+    const btnVolver = document.createElement('button'); // creo boton retroceso
+    btnVolver.innerText = 'Volver'; // contenido
+    btnVolver.classList.add("retroceder"); // le doy clase
+    btnVolver.addEventListener("click", handleRetroceder); // escucho click y mando a handle
+    const gallery = document.createElement("div"); // creo div galeria
+    gallery.classList.add("galería")
+    const imagenGalería = document.createElement("img");
+    imagenGalería.classList.add("imagenGalería");
+    let index = 0
+    imagenGaleríaSrc = fotos.find((pais)=>e.target.id === pais.country).img[index];
+    const handleImgClick = () => {
+        if (index === fotos.find((pais)=>e.target.id === pais.country).img.length-1) {
+            index = 0;
+        } else {
+            index++;
+        }
+        imagenGaleríaSrc = fotos.find((pais)=>e.target.id === pais.country).img[index];
+        imagenGalería.src = `images/${e.target.id}/${imagenGaleríaSrc}`;
+        console.log(index)
+    };
+    imagenGalería.addEventListener("click", handleImgClick);
+    imagenGalería.src = `images/${e.target.id}/${imagenGaleríaSrc}`;
+    gallery.appendChild(imagenGalería);
+    interior.firstChild.style.display = "none"; // colapso la lista
+    interior.appendChild(gallery); // agrego galeria
+    interior.appendChild(btnVolver); // agrego boton retroceso
+};
 
 // función para manejar el clickeo en un área
 const handleAreaClick = (e) => {
     interior.innerHTML = ''; // limpio el modal
     const divContent = document.createElement('div'); // creo div contenedora
-    const videoList = document.createElement('ul'); // creo ul
     const contentTitle = document.createElement('h2'); // creo h2
-    const videoListTitle = document.createElement('h3'); // creo h3
     contentTitle.innerText = e; // le doy texto a h2
-    videoListTitle.innerText = 'Videos'; // le doy texto a h3
     divContent.appendChild(contentTitle); // incorporo h2 a div
+    const videosSeleccionados = videos.filter((video)=>video.country.includes(e)); // tomo los videos de la lista que corresponden al país seleccionado
+    if (videosSeleccionados.length > 0) 
+    {const videoList = document.createElement('ul'); // creo ul
+    const videoListTitle = document.createElement('h3'); // creo h3
+    videoListTitle.innerText = 'Videos'; // le doy texto a h3
     divContent.appendChild(videoListTitle); // incorporo h3 a div
     divContent.appendChild(videoList); // incorporo ul a div
-    interior.appendChild(divContent); // incorporo div a modal  
-    const videosSeleccionados = videos.filter((video)=>video.country.includes(e)); // tomo los videos de la lista que corresponden al país seleccionado
     videosSeleccionados.forEach((video) => { // por cada video
         const listItem = document.createElement('li'); // creo un elemento lista
         const videoBtn = document.createElement('button');  // y un boton
@@ -138,14 +201,34 @@ const handleAreaClick = (e) => {
         listItem.appendChild(videoBtn); // incorporo el boton al li
         videoList.appendChild(listItem); // incorporo li a ul
         videoBtn.addEventListener('click', handleButtonClick); // le doy funcion al boton
-    });
+    });}
+    const galleryBtn = document.createElement("button");
+    galleryBtn.innerText = "Fotos";
+    galleryBtn.id = e;
+    divContent.appendChild(galleryBtn);
+    galleryBtn.addEventListener("click", handleGalleryBtnClick);
+    interior.appendChild(divContent); // incorporo div a modal  
     reproductor.classList.add('open'); // hago visible el modal
 };
 
 ImageMap('img[usemap]') // tomo este código prestado para reescalar el mapeo de la imagen
 
-// VVV para ver donde está el mouse desde la consola VVV
-// map.addEventListener('mousemove', function(event){
-//     setTimeout(console.log("x: " + event.offsetX + " y: " + event.offsetY), 1000)
 
-// });
+// VVV zona de pruebas VVV
+// // funcion para clickear el mapa
+// const handleMapClick = () => {
+    
+    //    interior.innerHTML = ''; // limpio el modal
+//    const videoList = document.createElement('ul'); // creo lista
+//    interior.appendChild(videoList); // incorporo la lista
+//    videos.forEach((video) => { // por cada video
+//        const listItem = document.createElement('li'); // creo un elemento lista
+//        const videoBtn = document.createElement('button');  // y un boton
+//        videoBtn.innerText = video.video; // el texto del boton muestra el nombre del video
+//        listItem.appendChild(videoBtn); // incorporo el boton al li
+//        videoList.appendChild(listItem); // incorporo li a ul
+//        videoBtn.addEventListener('click', handleButtonClick); // le doy funcion al boton
+//    });
+//    reproductor.classList.add('open'); // hago visible el modal
+// };
+// map.addEventListener('click', handleMapClick); // a modificar para integrar las areas

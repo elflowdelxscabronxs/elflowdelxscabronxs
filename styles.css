@@ -129,3 +129,12 @@ h3 {
 area:hover {
     cursor: pointer;
 }
+
+.galería {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.imagenGalería {
+    width: 100%;
+}
