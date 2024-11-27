@@ -139,13 +139,15 @@ const handleButtonClick = (e) => {
     btnVolver.innerText = 'Volver'; // contenido
     btnVolver.classList.add("retroceder"); // le doy clase
     btnVolver.addEventListener("click", handleRetroceder); // escucho click y mando a handle
+    const divVideo = document.createElement("div");
     const videoRep = document.createElement("iframe"); // creo iframe
     videoRep.src = `https://www.youtube.com/embed/` + videos.find((video)=>e.target.innerText === video.video).id; // le doy source correspondiente
     videoRep.setAttribute("frameborder", 0); // sin borde
     videoRep.setAttribute("allowfullscreen", true); // se puede maximizar
-    videoRep.classList.add("embebido"); // le doy clase
+    videoRep.classList.add("responsive-iframe-inner"); // le doy clase
     interior.firstChild.style.display = "none"; // colapso la lista
-    interior.appendChild(videoRep); // agrego iframe
+    divVideo.appendChild(videoRep);
+    interior.appendChild(divVideo); // agrego iframe
     interior.appendChild(btnVolver); // agrego boton retroceso
 };
 
@@ -170,7 +172,6 @@ const handleGalleryBtnClick = (e) => {
         }
         imagenGaleríaSrc = fotos.find((pais)=>e.target.id === pais.country).img[index];
         imagenGalería.src = `images/${e.target.id}/${imagenGaleríaSrc}`;
-        console.log(index)
     };
     imagenGalería.addEventListener("click", handleImgClick);
     imagenGalería.src = `images/${e.target.id}/${imagenGaleríaSrc}`;
@@ -190,9 +191,6 @@ const handleAreaClick = (e) => {
     const videosSeleccionados = videos.filter((video)=>video.country.includes(e)); // tomo los videos de la lista que corresponden al país seleccionado
     if (videosSeleccionados.length > 0) 
     {const videoList = document.createElement('ul'); // creo ul
-    const videoListTitle = document.createElement('h3'); // creo h3
-    videoListTitle.innerText = 'Videos'; // le doy texto a h3
-    divContent.appendChild(videoListTitle); // incorporo h3 a div
     divContent.appendChild(videoList); // incorporo ul a div
     videosSeleccionados.forEach((video) => { // por cada video
         const listItem = document.createElement('li'); // creo un elemento lista
@@ -212,23 +210,3 @@ const handleAreaClick = (e) => {
 };
 
 ImageMap('img[usemap]') // tomo este código prestado para reescalar el mapeo de la imagen
-
-
-// VVV zona de pruebas VVV
-// // funcion para clickear el mapa
-// const handleMapClick = () => {
-    
-    //    interior.innerHTML = ''; // limpio el modal
-//    const videoList = document.createElement('ul'); // creo lista
-//    interior.appendChild(videoList); // incorporo la lista
-//    videos.forEach((video) => { // por cada video
-//        const listItem = document.createElement('li'); // creo un elemento lista
-//        const videoBtn = document.createElement('button');  // y un boton
-//        videoBtn.innerText = video.video; // el texto del boton muestra el nombre del video
-//        listItem.appendChild(videoBtn); // incorporo el boton al li
-//        videoList.appendChild(listItem); // incorporo li a ul
-//        videoBtn.addEventListener('click', handleButtonClick); // le doy funcion al boton
-//    });
-//    reproductor.classList.add('open'); // hago visible el modal
-// };
-// map.addEventListener('click', handleMapClick); // a modificar para integrar las areas

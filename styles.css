@@ -3,22 +3,27 @@
 }
 
 body {
-    font-family: "Fredericka the Great", serif;
+    font-family: "Maiden Orange", serif;
+    font-size: 2rem;
+    letter-spacing: 1px;
     margin: 0px;
 }
 
 ul {
     list-style-type: none;
+    padding: 0;
 }
 
 button {
     font-family: inherit;
-    font-size: 1em;
+    font-size: inherit;
+    letter-spacing: inherit;
     margin: 5px;
 }
 
 h1 {
-    font-size: 4em;
+    font-family: "Fredericka the Great", serif;
+    font-size: 4rem;
     color: white;
     font-weight: lighter;
     -webkit-text-stroke: 0.5px #7a9ca0;
@@ -34,32 +39,66 @@ h3 {
     color: #7a9ca0;
 }
 
+.wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
 .header {
-    position: absolute;
+    width: 125%;
     left: 0;
     right: 0;
-    margin: 0 auto;
     text-align: center;
-
 }
 
 .flotante {
     width: 80%;
     position: absolute;
     left: 10%;
-    top: 18%;
+    /* top: 5%; */
+    padding-bottom: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .footer {
+    position: absolute;
+    height: 24rem;
+    width: 100%;
+    bottom: 0;
     display: flex;
+    flex-flow: column;
     justify-content: space-around;
     align-items: center;
+}
 
+.foot {
+
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 1 auto;
+}
+
+.foot:first-of-type div:first-of-type {
+    flex: 2 0.8 auto;
+}
+
+.foot:first-of-type div:last-of-type {
+    flex: 1 1.1 auto;
+}
+
+.footer-img {
+    max-width: 70%;
+    width: 100%;
+    padding: 1rem;
 }
 
 .map {
@@ -89,7 +128,6 @@ h3 {
 
 .rep-inner {
     min-width: 90%;
-
 }
 
 .contenedor {
@@ -109,19 +147,21 @@ h3 {
     height: 100%;
 }
 
+.responsive-iframe-inner {
+    position: relative;
+    width: 50rem;
+    height: 28.125rem;
+}
+
 .presentación {
     padding: 1%;
     background-color: rgba(255, 255, 255, 0.5);
-    font-weight: 600;
+
     margin-bottom: 40px;
 }
 
-.embebido {
-
-    padding-bottom: 2%;
-}
-
 .retroceder {
+
     display: block;
     margin: auto auto;
 }
